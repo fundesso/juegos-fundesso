@@ -365,7 +365,9 @@ function renderQuestion(){
 
   const box=$("answers");
   box.innerHTML="";
-  q.answers.forEach(([text,correct],idx)=>{
+  // Mezclar las respuestas en cada reto para evitar que la correcta sea siempre A.
+  const shuffled=[...q.answers].sort(()=>Math.random()-0.5);
+  shuffled.forEach(([text,correct],idx)=>{
     const btn=document.createElement("button");
     btn.className="answer";
     btn.textContent=`${String.fromCharCode(65+idx)}. ${text}`;
